@@ -183,6 +183,8 @@ const ApiTest_Handler = {
         return request.type === 'IntentRequest' && request.intent.name === 'ApiTest';
     },
     handle(handlerInput) {
+        console.log("ApiTest_Handler")
+        console.log(handlerInput.requestEnvelope.request)
         const request = handlerInput.requestEnvelope.request;
         const responseBuilder = handlerInput.responseBuilder;
         let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
@@ -195,7 +197,7 @@ const ApiTest_Handler = {
                 .getResponse();
 
         }
-        let say = 'Hello from ApiTest. ';
+        let say = 'Hello from ApiTest. This is the self hoster ApiTest. ';
 
         let slotStatus = '';
         let resolvedSlot;
@@ -281,7 +283,7 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT);
-console.log('Alexa list RESTful API server started on: ' + PORT + "Health check included");
+console.log('Alexa list RESTful API server started on: ' + PORT + " Health check included");
 
 // 3.  Helper Functions ===================================================================
 
