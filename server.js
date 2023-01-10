@@ -12,7 +12,8 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         const speechText = 'Hello World - Your skill has launched';
-
+        consolg.log("Got here ")
+        console.log(handlerInput.requestEnvelope);
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
