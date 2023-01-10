@@ -30,6 +30,9 @@ const skill = skillBuilder.create();
 const adapter = new ExpressAdapter(skill, false, false);
 
 app.post('/', adapter.getRequestHandlers());
+router.get('/health', (req, res) => {
+    res.status(200).send('Ok');
+  });
 
 app.listen(PORT);
 console.log('Alexa list RESTful API server started on: ' + PORT);
