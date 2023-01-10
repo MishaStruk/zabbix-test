@@ -1,6 +1,7 @@
 const express = require('express');
 const { ExpressAdapter } = require('ask-sdk-express-adapter');
 const Alexa = require('ask-sdk-core');
+const axios = require('axios');
 const app = express();
 const skillBuilder = Alexa.SkillBuilders.custom();
 
@@ -182,7 +183,7 @@ const ApiTest_Handler = {
         const request = handlerInput.requestEnvelope.request;
         return request.type === 'IntentRequest' && request.intent.name === 'ApiTest';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         console.log("ApiTest_Handler")
         console.log(handlerInput.requestEnvelope.request)
         const request = handlerInput.requestEnvelope.request;
@@ -232,6 +233,10 @@ const ApiTest_Handler = {
 
         say += slotStatus;
 
+        let res = await axios.get('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=ILS&apikey=HLDMC3I4DYULN5NN');
+        let data = res.data;
+        console.log(data);
+        say += data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
 
         return responseBuilder
             .speak(say)
