@@ -838,7 +838,8 @@ const DeleteHostAPIHandler = {
     },
     handle(handlerInput) {
 
-        const recommendationResult = handlerInput.requestEnvelope.request.apiRequest.arguments.hostname;
+        const hostnameArgument = handlerInput.requestEnvelope.request.apiRequest.arguments.hostname;
+        console.log(`HOSTNAME: ${hostnameArgument}`)
 
         // setting the default response.
         let databaseResponse = `I don't know much about ${recommendationResult.name}.`;
