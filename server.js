@@ -841,18 +841,6 @@ const DeleteHostAPIHandler = {
         const hostnameArgument = handlerInput.requestEnvelope.request.apiRequest.arguments.hostname;
         console.log(`HOSTNAME: ${hostnameArgument}`)
 
-        // setting the default response.
-        let databaseResponse = `I don't know much about ${recommendationResult.name}.`;
-
-        const energy = recommendationResult.energy;
-        const size = recommendationResult.size;
-        const temperament = recommendationResult.temperament;
-
-        // setting the actual response if we find a match for their preference
-        if (energy !== null && size !== null && temperament !== null) {
-            const key = `${energy}-${size}-${temperament}`;
-            databaseResponse = data[key];
-        }
 
         const responseEntity = {
             status: "true",
